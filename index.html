@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dom Tag Depth</title>
+
+	<link rel="stylesheet" href="assets/dom.css">
+</head>
+<body>
+<center>
+	<div class="main-header">
+		Dom Tag Depth
+	</div>
+</center>
+<div class="main-body">
+	<div id="main-content">
+		<div class="menu-list">
+			<ul>
+				<li> Level 1
+					<ul>
+						<li> Level 2</li>
+						<li> Level 2</li>
+						<li> Level 2
+							<ul>
+								<li>Level 3</li>
+								<li>Level 3</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li> Level 1</li>
+				<li> Level 1
+					<ul>
+						<li> Level 2 </li>
+						<li> Level 2
+							<ul>
+								<li> Level 3
+									<ul>
+										<li> Level 4</li>
+										<li> Level 4
+											<ul>
+												<li> Level 5 </li>
+												<li> Level 5
+													<ul>
+														<li> Level 6
+															<ul>
+																<li> Level 7</li>
+																<li> Level 7
+																	<ul></ul>
+																</li>
+																<li> Level 7</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li> Level 4</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li> Level 1
+					<ul>
+						<li> Level 2 </li>
+						<li> Level 2 </li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="result-content">
+		<div id="result">
+			<div class="result-ul">
+				<center>
+					<div class="depth-ul">
+						0
+					</div>
+					<a href="javascript:;" class="btn" onclick="findDepth('ul')"><b> UL </b> Depth</a>
+				</center>
+			</div>
+			<div class="result-li">
+				<center>
+					<div class="depth-li">
+						0
+					</div>
+					<a href="javascript:;" class="btn" onclick="findDepth('li')"><b> LI </b> Depth</a>
+				</center>
+			</div>
+		</div>
+	</div>
+	<div class="code">
+	<a href="javascript:;" class="menu" onclick="showcode('html')">HTML</a>
+	<a href="javascript:;" class="menu menu-left" onclick="showcode('js')">Show JS Code</a>
+<xmp id="html-code" contenteditable="true">
+	<div class="menu-list">
+		<ul>
+			<li> Level 1
+				<ul>
+					<li> Level 2</li>
+					<li> Level 2</li>
+					<li> Level 2
+						<ul>
+							<li>Level 3</li>
+							<li>Level 3</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li> Level 1</li>
+			<li> Level 1
+				<ul>
+					<li> Level 2 </li>
+					<li> Level 2
+						<ul>
+							<li> Level 3
+								<ul>
+									<li> Level 4</li>
+									<li> Level 4
+										<ul>
+											<li> Level 5 </li>
+											<li> Level 5
+												<ul>
+													<li> Level 6
+														<ul>
+															<li> Level 7</li>
+															<li> Level 7
+																<ul></ul>
+															</li>
+															<li> Level 7</li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li> Level 4</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li> Level 1
+				<ul>
+					<li> Level 2 </li>
+					<li> Level 2 </li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</xmp>
+<xmp id="js-code">
+	function getMaxDepth (tag) {
+		tag = tag.toUpperCase();
+
+		var maxDepth = 0;
+
+		function getChildren (node, idx) {
+
+			var childNode = node.children;
+
+			if (node.tagName == tag) {
+				idx++;
+				if (idx > maxDepth) {
+					maxDepth = idx;
+				}
+			}
+
+			for(var i = 0; i < childNode.length; i++) {
+				getChildren(childNode[i], idx);
+			}
+		}
+
+		var tagItems = document.getElementsByTagName(tag);
+
+		for (var i = 0; i < tagItems.length; i++) {
+			var children = tagItems[i].children;
+			var len = children.length-1;
+			while (len >= 0) {
+				getChildren(children[len], 1);
+				len--;
+			}
+		}
+
+		return maxDepth;
+	}
+		</xmp>
+	</div>
+</div>
+
+<a href="https://github.com/krishcdbry/expand-inputbox">
+	<img style="position: absolute; top: 0; right: 0; border: 0;"
+	     src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67"
+	     alt="Fork me on GitHub"
+	     data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+</a>
+<script type="text/javascript" src="dom.js"></script>
+</body>
+</html>
