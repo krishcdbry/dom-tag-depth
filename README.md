@@ -1,5 +1,5 @@
 # DOM Tag Depth
-Finding the maximum nested depth of a particular tag in a HTML Document
+Finding the maximum nested depth of a particular tag in a HTML Document with pure Javascript.
 
 
 
